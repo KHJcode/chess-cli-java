@@ -1,6 +1,6 @@
 package Piece;
 
-public class Pawn {
+public class sudo Pawn {
 
     public Pawn(boolean white){
         super('P', white);
