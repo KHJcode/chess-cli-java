@@ -5,63 +5,102 @@ public class Rook {
     public Pawn(boolean white){
         super('P', white);
     }
-
-    public Boolean IsRook(int row,int col,char team,int dir){//폰의 이동이 유효한지
-        //1 : +1 +1  2 : +1 +0  3 : +1,-1
+    //각 말들의 표기법을 엌케할지 정해야 코드 좀더 수정 가능
+    public Boolean IsRook(int row,int col,char team,int dir,int len)
+    {//폰의 이동이 유효한지
+        //1 2 3 4  동 서 남북
         if(team == 'W')
         {
-            if(dir==2){
-                if(board[row-1][col]==0)
-                    return true;
-                else {
-                    return false;
+
+            if (dir == 1) {
+                if(isRange(row,col+len-1)==true) {
+                    if (board[row ][col+len-1] > 0) {
+                        Catch_Piece(row , col+len-1);
+                        return true;
+
+                    } else {
+                        return true;
+                    }
                 }
+
+                else return false;
             }
-            else if(dir ==1)
+            else if(dir ==2)
             {
-                if(board[row-1][col+1]==0)
-                    return false;
-                else {
-                    Catch_Piece(row-1,col+1);
-                    return false;
+                if(isRange(row,col-len+1)==true) {
+                    if (board[row][col - len+1] == 0)
+                        return true;
+                    else {
+                        Catch_Piece(row , col -len + 1);
+                        return true;
+                    }
                 }
+                else
+                    return false;
+            }
+            else if(dir==3){
+                if(isRange(row+len-1,col)==true) {
+                    if(board[row+len-1][col]==0)
+                        return true;
+                    else {
+                        Catch_Piece(row+len-1,col);
+                        return true;
+                    }
+                }
+                else return false;
             }
             else {
-                if(board[row-1][col-1]==0)
-                    return false;
-                else {
-                    Catch_Piece(row-1,col-1);
-                    return false;
+                if(isRange(row-len+1,col)==true) {
+                    if(board[row-len+1][col]==0)
+                        return true;
+                    else {
+                        Catch_Piece(row-len+1,col);
+                        return true;
+                    }
                 }
+                else return false;
             }
         }
-        else
-        {
-            if(dir==2){
-                if(board[row+1][col]==0)
-                    return true;
-                else {
+        else {
+            if (dir == 1) {
+                if (isRange(row, col + len - 1) == true) {
+                    if (board[row][col + len - 1] > 0) {
+                        Catch_Piece(row, col + len - 1);
+                        return true;
+
+                    } else {
+                        return true;
+                    }
+                } else return false;
+            } else if (dir == 2) {
+                if (isRange(row, col - len + 1) == true) {
+                    if (board[row][col - len + 1] == 0)
+                        return true;
+                    else {
+                        Catch_Piece(row, col - len + 1);
+                        return true;
+                    }
+                } else
                     return false;
-                }
-            }
-            else if(dir ==1)
-            {
-                if(board[row+1][col+1]==0)
-                    return false;
-                else {
-                    Catch_Piece(row+1,col+1);
-                    return false;
-                }
-            }
-            else {
-                if(board[row+1][col-1]==0)
-                    return false;
-                else {
-                    Catch_Piece(row+1,col-1);
-                    return false;
-                }
+            } else if (dir == 3) {
+                if (isRange(row + len - 1, col) == true) {
+                    if (board[row + len - 1][col] == 0)
+                        return true;
+                    else {
+                        Catch_Piece(row + len - 1, col);
+                        return true;
+                    }
+                } else return false;
+            } else {
+                if (isRange(row - len + 1, col) == true) {
+                    if (board[row - len + 1][col] == 0)
+                        return true;
+                    else {
+                        Catch_Piece(row - len + 1, col);
+                        return true;
+                    }
+                } else return false;
             }
         }
     }
 
-}
