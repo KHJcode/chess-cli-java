@@ -13,6 +13,10 @@ public class Game {
         this.handleUpdateBoard();
     }
 
+    public Piece[][] getDeployment() {
+        return this.board.getDeployment();
+    }
+
     public void handleUpdateBoard() {
         this.renderer.draw(this.board);
     }
