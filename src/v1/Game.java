@@ -1,17 +1,13 @@
 package v1;
 
 import v1.piece.Piece;
-import v1.player.Player;
 
 public class Game {
     private int count = 0;
-    private final Player whitePlayer, blackPlayer;
     private final Board board;
     private final Renderer renderer;
 
-    Game(Player whitePlayer, Player blackPlayer) {
-        this.whitePlayer = whitePlayer;
-        this.blackPlayer = blackPlayer;
+    Game() {
         this.board = new Board();
         this.renderer = new Renderer();
         this.handleUpdateBoard();

@@ -1,11 +1,13 @@
 package v1.player;
 
+import v1.Game;
+
 public abstract class Player {
     private final String nickname;
+    private Game game;
 
     Player(String nickname) {
         this.nickname = nickname;
-        this.handleJoin();
     }
 
     // 플레이어의 닉네임을 반환
@@ -14,7 +16,8 @@ public abstract class Player {
     }
 
     // 플레이어가 게임에 입장했을 때 제어
-    public void handleJoin() {
+    public void handleJoin(Game game) {
+        this.game = game;
         System.out.println("Player " + this.nickname + " is joined!");
     }
 
