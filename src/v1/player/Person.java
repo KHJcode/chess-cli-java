@@ -2,6 +2,7 @@ package v1.player;
 
 import v1.Game;
 
+import java.io.Console;
 import java.util.Scanner;
 
 public class Person extends Player {
@@ -27,6 +28,11 @@ public class Person extends Player {
     }
 
     @Override
+    public void handleJoin(Game game) {
+        this.game = game;
+    }
+
+    @Override
     public void handleTurn() {
         boolean result = false;
         while (!result) {
@@ -34,7 +40,7 @@ public class Person extends Player {
             int currentY = this.inputNumberWithinRange("선택", 'Y', 1, 8);
             int targetX = this.inputNumberWithinRange("이동", 'X', 1, 8);
             int targetY = this.inputNumberWithinRange("이동", 'Y', 1, 8);
-            result = this.game.put(currentX, currentY, targetX, targetY);
+            result = this.game.put(currentX - 1, currentY - 1, targetX - 1, targetY - 1);
         }
     }
 }

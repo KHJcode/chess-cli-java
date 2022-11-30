@@ -13,6 +13,16 @@ public class Game {
         this.handleUpdateBoard();
     }
 
+    public boolean isEnd() {
+        Piece[][] deployment = this.getDeployment();
+        for (int i = 0; i < deployment.length; i++) {
+            for (int j = 0; j < deployment[i].length; j++) {
+
+            }
+        }
+        return false;
+    }
+
     public Piece[][] getDeployment() {
         return this.board.getDeployment();
     }
@@ -23,14 +33,16 @@ public class Game {
 
     public boolean put(int nowX, int nowY, int moveX, int moveY) {
         Piece piece = board.getPiece(nowX, nowY);
-        Piece targetPiece = board.getPiece(moveX, moveY);
-        boolean targetStatus = piece.getTeamId() != targetPiece.getTeamId();
-        boolean canMove = targetPiece.getCanMove(nowX, nowY, moveX, moveY, targetStatus);
-        if (canMove) {
-            board.movePiece(nowX, nowY, moveX, moveY);
-            count += 1;
-            this.handleUpdateBoard();
-            return true;
+        if (piece != null) {
+            Piece targetPiece = board.getPiece(moveX, moveY);
+            int targetStatus = targetPiece == null ? 0 : (piece.getTeamId() == targetPiece.getTeamId() ? 1 : 2);
+            boolean canMove = piece.getCanMove(nowX, nowY, moveX, moveY, targetStatus, this.board.getDeployment());
+            if (canMove) {
+                board.movePiece(nowX, nowY, moveX, moveY);
+                count += 1;
+                this.handleUpdateBoard();
+                return true;
+            }
         }
         return false;
     }

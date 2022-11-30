@@ -15,13 +15,13 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public boolean getCanMove(int nowX, int nowY, int moveX, int moveY, boolean targetStatus) {
+    public boolean getCanMove(int nowX, int nowY, int moveX, int moveY, int targetStatus, Piece[][] deployment) {
         if (this.getTeamId() == 1) {
             if (isFirst) {
                 isFirst = false;
                 return (0 < moveX - nowX && moveX - nowX <= 2) && moveY == nowY;
             } else {
-                if (!targetStatus) {
+                if (targetStatus==1) {
                     return jul(moveX - nowX) == 1 && jul(moveY - nowY) == 1;
                 } else
                     return ((moveX - nowX == 1) && moveY == nowY);
@@ -32,7 +32,7 @@ public class Pawn extends Piece {
                 return (-2 <= moveX - nowX && moveX - nowX < 0) && moveY == nowY;
             } else {
 
-                if (!targetStatus) {
+                if (targetStatus==1) {
                     return jul(moveX - nowX) == 1 && jul(moveY - nowY) == 1;
                 }
                 else

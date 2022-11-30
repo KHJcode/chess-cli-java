@@ -4,7 +4,6 @@ import v1.Game;
 
 public abstract class Player {
     private final String nickname;
-    private Game game;
 
     Player(String nickname) {
         this.nickname = nickname;
@@ -17,9 +16,7 @@ public abstract class Player {
     }
 
     // 플레이어가 게임에 입장했을 때 제어
-    public void handleJoin(Game game) {
-        this.game = game;
-    }
+    abstract public void handleJoin(Game game);
 
     // 플레이어의 차례가 왔을 때 제어
     abstract public void handleTurn();

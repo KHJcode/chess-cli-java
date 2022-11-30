@@ -22,5 +22,8 @@ abstract public class Piece {
         return this.mark;
     }
 
-    abstract public boolean getCanMove(int nowX, int nowY, int moveX, int moveY, boolean targetStatus);
+    /*
+        targetStatus = (0: 빈 칸, 1: 우리 칸, 2: 상대 칸)
+     */
+    abstract public boolean getCanMove(int nowX, int nowY, int moveX, int moveY, int targetStatus, Piece[][] deployment);
 }

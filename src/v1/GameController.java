@@ -17,6 +17,11 @@ public class GameController {
         this.game = new Game();
         this.player1.handleJoin(this.game);
         this.player2.handleJoin(this.game);
+        while (!this.game.isEnd()) {
+            this.player1.handleTurn();
+            this.player2.handleTurn();
+        }
+        System.out.println("승리");
     }
 
     public void restart() {
