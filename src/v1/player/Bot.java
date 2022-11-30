@@ -4,4 +4,7 @@ public class Bot extends Player {
     public Bot(String nickname) {
         super(nickname);
     }
+
+    @Override
+    public void handleTurn() {}
 }
