@@ -37,14 +37,14 @@ public class Person extends Player {
     public void handleTurn() {
         boolean result = false;
         while (!result) {
-            int currentX = this.inputNumberWithinRange("선택", 'X', 1, 8);
-            int currentY = this.inputNumberWithinRange("선택", 'Y', 1, 8);
-            if (this.game.getBoard().getPiece(currentX, currentY) != null) {
-
+            int currentX = this.inputNumberWithinRange("선택", 'X', 1, 8) - 1;
+            int currentY = this.inputNumberWithinRange("선택", 'Y', 1, 8) - 1;
+            if (this.game.getBoard().getPiece(currentX, currentY) == null) {
+                System.out.println("시스템: 선택하신 칸은 현재 비어있습니다!");
             } else {
-                int targetX = this.inputNumberWithinRange("이동", 'X', 1, 8);
-                int targetY = this.inputNumberWithinRange("이동", 'Y', 1, 8);
-                result = this.game.put(currentX - 1, currentY - 1, targetX - 1, targetY - 1);
+                int targetX = this.inputNumberWithinRange("이동", 'X', 1, 8) - 1;
+                int targetY = this.inputNumberWithinRange("이동", 'Y', 1, 8) - 1;
+                result = this.game.put(currentX, currentY, targetX, targetY);
                 if (!result) {
                     System.out.println("시스템: 규칙에 따라 착수할 수 없습니다!");
                 }

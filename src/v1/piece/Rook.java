@@ -10,7 +10,6 @@ public class Rook extends Piece {
         super.mark = pieceTeams.get(teamId).getRook();
     }
 
-    //(0: 빈 칸, 1: 우리 칸, 2: 상대 칸)
     public int jul(int n) {
         return n < 0 ? n * -1 : n;
     }
@@ -20,6 +19,35 @@ public class Rook extends Piece {
         if (targetStatus == 1)
             return false;
         else {
+            if (nowX != moveX && nowY == moveY) {
+                if (nowX < moveX) {
+                    for (int i = nowX + 1; i < moveX; i++) {
+                        if (board.getPiece(i, moveY) != null)
+                            return false;
+
+                    }
+                } else {
+                    for (int i = moveX + 1; i < nowX; i++) {
+                        if (board.getPiece(i, moveY) != null)
+                            return false;
+
+                    }
+                }
+            } else {
+                if (nowY < moveY) {
+                    for (int i = nowY + 1; i < moveY; i++) {
+                        if (board.getPiece(moveX, i) != null)
+                            return false;
+
+                    }
+                } else {
+                    for (int i = moveY + 1; i < nowY; i++) {
+                        if (board.getPiece(moveX, i) != null)
+                            return false;
+
+                    }
+                }
+            }
             return (jul(nowX - moveX) > 0 && nowY == moveY) || (jul(nowY - moveY) > 0 && nowX == moveX);
         }
     }

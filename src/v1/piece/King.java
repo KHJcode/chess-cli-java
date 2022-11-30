@@ -19,17 +19,8 @@ public class King extends Piece {
         if (targetStatus == 1) {
             return false;
         } else {
-            if (nowX < moveX && nowY < moveY) {
-                return moveX - nowX == moveY - nowY;
-            } else if (nowX < moveX && nowY > moveY) {
-                return moveX - nowX == nowY - moveY;
-            } else if (nowX > moveX == nowY < moveY) {
-                return nowX - moveX == moveY - nowY;
-            } else if (nowX > moveX && nowY > moveY) {
-                return nowX - moveX == nowY - moveY;
-            } else {
-                return jul(nowX - moveX) > 0 && nowY == moveY;
-            }
+            return jul(nowX - moveX) >= 0 && jul(nowY - moveY) > 0 && !((nowY - moveY) == 0 && (nowX - moveX) == (0));
         }
     }
+
 }

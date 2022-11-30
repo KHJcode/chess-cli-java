@@ -1,5 +1,6 @@
 package v1.piece;
 
+import v1.Common;
 import v1.Board;
 
 import static v1.Common.pieceTeams;
@@ -18,26 +19,30 @@ public class Pawn extends Piece {
 
     @Override
     public boolean getCanMove(Board board, int nowX, int nowY, int moveX, int moveY, int targetStatus) {
-        if (this.getTeamId() == 1) {
-            if (isFirst) {
+        if (Common.BLACK_ID == this.getTeamId()) {
+            if (this.isFirst) {
                 isFirst = false;
-                return (0 < moveX - nowX && moveX - nowX <= 2) && moveY == nowY;
+                if (board.getPiece(nowX, nowY + 1) != null)
+                    return false;
+                return (0 < jul(moveY - nowY) && jul(moveY - nowY) <= 2) && moveX == nowX;
             } else {
-                if (targetStatus == 1) {
+                if (targetStatus == 2) {
                     return jul(moveX - nowX) == 1 && jul(moveY - nowY) == 1;
                 } else
-                    return ((moveX - nowX == 1) && moveY == nowY);
+                    return jul(moveY - nowY) == 1 && moveX == nowX;
             }
         } else {
-            if (isFirst) {
-                isFirst = false;
-                return (-2 <= moveX - nowX && moveX - nowX < 0) && moveY == nowY;
+            if (this.isFirst) {
+                this.isFirst = false;
+                if (board.getPiece(nowX, nowY - 1) != null)
+                    return false;
+                return (0 < jul(moveY - nowY) && jul(moveY - nowY) <= 2) && moveX == nowX;
             } else {
 
-                if (targetStatus == 1) {
+                if (targetStatus == 2) {
                     return jul(moveX - nowX) == 1 && jul(moveY - nowY) == 1;
                 } else
-                    return ((moveX - nowX == -1) && moveY == nowY);
+                    return jul(moveY - nowY) == 1 && moveX == nowX;
             }
         }
     }
