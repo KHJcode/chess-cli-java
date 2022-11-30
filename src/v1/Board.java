@@ -13,6 +13,7 @@ public class Board {
     }
 
     private void initialize() {
+        this.deployment = new Piece[8][8];
         int id = 0;
         setPiece(0, 0, new Rook(++id, BLACK_ID));
         setPiece(0, 1, new Knight(++id, BLACK_ID));

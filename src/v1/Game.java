@@ -14,17 +14,22 @@ public class Game {
         this.blackPlayer = blackPlayer;
         this.board = new Board();
         this.renderer = new Renderer();
+        this.handleUpdateBoard();
+    }
+
+    public void handleUpdateBoard() {
+        this.renderer.draw(this.board);
     }
 
     public int put(int nowX, int nowY, int moveX, int moveY) {
         Piece piece = board.getPiece(nowX, nowY);
         Piece targetPiece = board.getPiece(moveX, moveY);
-        int targetStatus = piece.getTeamId() == targetPiece.getTeamId() ? 0 : 1;
+        boolean targetStatus = piece.getTeamId() != targetPiece.getTeamId();
         boolean canMove = targetPiece.getCanMove(nowX, nowY, moveX, moveY, targetStatus);
         if (canMove) {
             board.movePiece(nowX, nowY, moveX, moveY);
             count += 1;
-            renderer.draw(this.board);
+            this.handleUpdateBoard();
             return 0;
         }
         return -1;

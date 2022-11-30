@@ -1,5 +1,4 @@
-package v1;
-
+import v1.GameController;
 import v1.player.Person;
 import v1.player.Bot;
 import v1.player.Player;

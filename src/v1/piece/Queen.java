@@ -13,8 +13,8 @@ public class Queen extends Piece {
     }
 
     @Override
-    public boolean getCanMove(int nowX, int nowY, int moveX, int moveY, int targetStatus) {
-        if (targetStatus == 2) {
+    public boolean getCanMove(int nowX, int nowY, int moveX, int moveY, boolean targetStatus) {
+        if (!targetStatus) {
             return false;
         } else {
             return jul(nowX - moveX) >= 0 && jul(nowY - moveY) > 0 && !((nowY - moveY) == 0 && (nowX - moveX) == (0));

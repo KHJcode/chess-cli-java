@@ -9,8 +9,8 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public boolean getCanMove(int nowX, int nowY, int moveX, int moveY, int targetStatus) {
-        if (targetStatus == 2) {
+    public boolean getCanMove(int nowX, int nowY, int moveX, int moveY, boolean targetStatus) {
+        if (!targetStatus) {
             return false;
         }
         if (nowX < moveX && nowY < moveY) {

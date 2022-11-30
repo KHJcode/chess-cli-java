@@ -22,5 +22,5 @@ abstract public class Piece {
         return this.mark;
     }
 
-    abstract public boolean getCanMove(int nowX, int nowY, int moveX, int moveY, int targetStatus);
+    abstract public boolean getCanMove(int nowX, int nowY, int moveX, int moveY, boolean targetStatus);
 }

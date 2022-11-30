@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Common {
-    public static int BLACK_ID = 1;
-    public static int WHITE_ID = 2;
+    public static int BLACK_ID = 0;
+    public static int WHITE_ID = 1;
 
     public static ArrayList<PieceTeam> pieceTeams = new ArrayList<>(Arrays.asList(new Black(), new White()));
 }

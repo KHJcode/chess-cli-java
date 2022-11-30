@@ -13,10 +13,10 @@ public class Knight extends Piece {
     }
 
     @Override
-    public boolean getCanMove(int nowX, int nowY, int moveX, int moveY, int targetStatus) {
-        if (targetStatus == 2)
+    public boolean getCanMove(int nowX, int nowY, int moveX, int moveY, boolean targetStatus) {
+        if (!targetStatus)
             return false;
-        if ((jul(moveX - nowX) == 2 && jul(moveY - nowY) == 1) || (jul(moveX - nowX) == 1 && jul(moveY - nowY) == 2))
-            return true;
+        else
+            return (jul(moveX - nowX) == 2 && jul(moveY - nowY) == 1) || (jul(moveX - nowX) == 1 && jul(moveY - nowY) == 2);
     }
 }
