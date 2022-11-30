@@ -17,7 +17,7 @@ public class Game {
         this.renderer.draw(this.board);
     }
 
-    public int put(int nowX, int nowY, int moveX, int moveY) {
+    public boolean put(int nowX, int nowY, int moveX, int moveY) {
         Piece piece = board.getPiece(nowX, nowY);
         Piece targetPiece = board.getPiece(moveX, moveY);
         boolean targetStatus = piece.getTeamId() != targetPiece.getTeamId();
@@ -26,8 +26,8 @@ public class Game {
             board.movePiece(nowX, nowY, moveX, moveY);
             count += 1;
             this.handleUpdateBoard();
-            return 0;
+            return true;
         }
-        return -1;
+        return false;
     }
 }
