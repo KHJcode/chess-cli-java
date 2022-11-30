@@ -1,5 +1,7 @@
 package v1.piece;
 
+import v1.Board;
+
 import static v1.Common.pieceTeams;
 
 public class Pawn extends Piece {
@@ -15,13 +17,13 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public boolean getCanMove(int nowX, int nowY, int moveX, int moveY, int targetStatus, Piece[][] deployment) {
+    public boolean getCanMove(Board board, int nowX, int nowY, int moveX, int moveY, int targetStatus) {
         if (this.getTeamId() == 1) {
             if (isFirst) {
                 isFirst = false;
                 return (0 < moveX - nowX && moveX - nowX <= 2) && moveY == nowY;
             } else {
-                if (targetStatus==1) {
+                if (targetStatus == 1) {
                     return jul(moveX - nowX) == 1 && jul(moveY - nowY) == 1;
                 } else
                     return ((moveX - nowX == 1) && moveY == nowY);
@@ -32,10 +34,9 @@ public class Pawn extends Piece {
                 return (-2 <= moveX - nowX && moveX - nowX < 0) && moveY == nowY;
             } else {
 
-                if (targetStatus==1) {
+                if (targetStatus == 1) {
                     return jul(moveX - nowX) == 1 && jul(moveY - nowY) == 1;
-                }
-                else
+                } else
                     return ((moveX - nowX == -1) && moveY == nowY);
             }
         }

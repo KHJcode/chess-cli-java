@@ -23,6 +23,10 @@ public class Game {
         return false;
     }
 
+    public Board getBoard() {
+        return this.board;
+    }
+
     public Piece[][] getDeployment() {
         return this.board.getDeployment();
     }
@@ -36,7 +40,7 @@ public class Game {
         if (piece != null) {
             Piece targetPiece = board.getPiece(moveX, moveY);
             int targetStatus = targetPiece == null ? 0 : (piece.getTeamId() == targetPiece.getTeamId() ? 1 : 2);
-            boolean canMove = piece.getCanMove(nowX, nowY, moveX, moveY, targetStatus, this.board.getDeployment());
+            boolean canMove = piece.getCanMove(this.board, nowX, nowY, moveX, moveY, targetStatus);
             if (canMove) {
                 board.movePiece(nowX, nowY, moveX, moveY);
                 count += 1;

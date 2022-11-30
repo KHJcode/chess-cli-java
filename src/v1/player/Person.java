@@ -1,6 +1,7 @@
 package v1.player;
 
 import v1.Game;
+import v1.piece.Piece;
 
 import java.io.Console;
 import java.util.Scanner;
@@ -38,9 +39,16 @@ public class Person extends Player {
         while (!result) {
             int currentX = this.inputNumberWithinRange("선택", 'X', 1, 8);
             int currentY = this.inputNumberWithinRange("선택", 'Y', 1, 8);
-            int targetX = this.inputNumberWithinRange("이동", 'X', 1, 8);
-            int targetY = this.inputNumberWithinRange("이동", 'Y', 1, 8);
-            result = this.game.put(currentX - 1, currentY - 1, targetX - 1, targetY - 1);
+            if (this.game.getBoard().getPiece(currentX, currentY) != null) {
+
+            } else {
+                int targetX = this.inputNumberWithinRange("이동", 'X', 1, 8);
+                int targetY = this.inputNumberWithinRange("이동", 'Y', 1, 8);
+                result = this.game.put(currentX - 1, currentY - 1, targetX - 1, targetY - 1);
+                if (!result) {
+                    System.out.println("시스템: 규칙에 따라 착수할 수 없습니다!");
+                }
+            }
         }
     }
 }
