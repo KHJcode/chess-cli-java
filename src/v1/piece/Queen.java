@@ -19,7 +19,76 @@ public class Queen extends Piece {
         if (targetStatus == 1) {
             return false;
         } else {
-            return jul(nowX - moveX) >= 0 && jul(nowY - moveY) > 0 && !((nowY - moveY) == 0 && (nowX - moveX) == (0));
+            if (nowX < moveX && nowY < moveY) {
+                int i = nowX + 1;
+                int j = nowY + 1;
+                while (i < moveX && j < moveY) {
+                    if (board.getPiece(i, j) != null) {
+                        return false;
+                    }
+                    i++;
+                    j++;
+                }
+                return moveX - nowX == moveY - nowY;
+            } else if (nowX < moveX && nowY > moveY) {
+                int i = nowX + 1;
+                int j = nowY + 1;
+                while (i < moveX && j > moveY) {
+                    if (board.getPiece(i, j) != null) {
+                        return false;
+                    }
+                    i++;
+                    j--;
+                }
+                return moveX - nowX == nowY - moveY;
+            } else if (nowX > moveX && nowY < moveY) {
+                int i = nowX + 1;
+                int j = nowY + 1;
+                while (i > moveX && j < moveY) {
+                    if (board.getPiece(i, j) != null) {
+                        return false;
+                    }
+                    i--;
+                    j++;
+                }
+                return nowX - moveX == moveY - nowY;
+            } else if (nowX > moveX && nowY > moveY) {
+                int i = nowX + 1;
+                int j = nowY + 1;
+                while (i > moveX && j > moveY) {
+                    if (board.getPiece(i, j) != null) {
+                        return false;
+                    }
+                    i--;
+                    j--;
+                }
+                return nowX - moveX == nowY - moveY;
+            } else if (nowX != moveX) {
+                if (nowX < moveX) {
+                    for (int i = nowX + 1; i < moveX; i++) {
+                        if (board.getPiece(i, moveY) != null)
+                            return false;
+                    }
+                } else {
+                    for (int i = moveX + 1; i < nowX; i++) {
+                        if (board.getPiece(i, moveY) != null)
+                            return false;
+                    }
+                }
+            } else {
+                if (nowY < moveY) {
+                    for (int i = nowY; i < moveY; i++) {
+                        if ((board.getPiece(moveX, i) != null) && i != nowY)
+                            return false;
+                    }
+                } else {
+                    for (int i = moveY + 1; i < nowY; i++) {
+                        if (board.getPiece(moveX, i) != null)
+                            return false;
+                    }
+                }
+            }
+            return true;
         }
     }
 }

@@ -22,5 +22,4 @@ public class King extends Piece {
             return jul(nowX - moveX) >= 0 && jul(nowY - moveY) > 0 && !((nowY - moveY) == 0 && (nowX - moveX) == (0));
         }
     }
-
 }
