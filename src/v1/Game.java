@@ -23,6 +23,7 @@ public class Game {
         return false;
     }
 
+    // 보드 인스턴스 반환
     public Board getBoard() {
         return this.board;
     }
@@ -31,10 +32,12 @@ public class Game {
         return this.board.getDeployment();
     }
 
+    // 보드를 업데이트할 때 제어
     public void handleUpdateBoard() {
         this.renderer.draw(this.board);
     }
 
+    // 착수
     public boolean put(int nowX, int nowY, int moveX, int moveY) {
         Piece piece = board.getPiece(nowX, nowY);
         if (piece != null) {

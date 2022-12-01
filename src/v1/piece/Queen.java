@@ -5,9 +5,10 @@ import v1.Board;
 import static v1.Common.pieceTeams;
 
 public class Queen extends Piece {
-    public Queen(int id, int team) {
-        super(id, team);
-        super.mark = pieceTeams.get(team).getQueen();
+
+    public Queen(int id, int teamId) {
+        super(id, teamId);
+        super.mark = pieceTeams.get(teamId).getQueen();
     }
 
     public int jul(int n) {
@@ -32,7 +33,7 @@ public class Queen extends Piece {
                 return moveX - nowX == moveY - nowY;
             } else if (nowX < moveX && nowY > moveY) {
                 int i = nowX + 1;
-                int j = nowY + 1;
+                int j = nowY - 1;
                 while (i < moveX && j > moveY) {
                     if (board.getPiece(i, j) != null) {
                         return false;
@@ -42,7 +43,7 @@ public class Queen extends Piece {
                 }
                 return moveX - nowX == nowY - moveY;
             } else if (nowX > moveX && nowY < moveY) {
-                int i = nowX + 1;
+                int i = nowX - 1;
                 int j = nowY + 1;
                 while (i > moveX && j < moveY) {
                     if (board.getPiece(i, j) != null) {
@@ -53,8 +54,8 @@ public class Queen extends Piece {
                 }
                 return nowX - moveX == moveY - nowY;
             } else if (nowX > moveX && nowY > moveY) {
-                int i = nowX + 1;
-                int j = nowY + 1;
+                int i = nowX - 1;
+                int j = nowY - 1;
                 while (i > moveX && j > moveY) {
                     if (board.getPiece(i, j) != null) {
                         return false;
