@@ -4,8 +4,7 @@ import v1.piece.Piece;
 import v1.piece.PieceId;
 import v1.piece.Queen;
 
-import static v1.Common.BLACK_ID;
-import static v1.Common.WHITE_ID;
+import static v1.Common.*;
 
 public class Game {
     private int count = 0;
@@ -31,8 +30,39 @@ public class Game {
         return false;
     }
 
+    // 왕 위치 반환
+    private int[] getKingPosition(int teamId) {
+        for (int y = 0; y <= HEIGHT; y++) {
+            for (int x = 0; x <= WIDTH; x++) {
+                Piece piece = this.board.getPiece(x, y);
+                if (piece.getTeamId() == teamId && piece.getId() == PieceId.KING.get()) {
+                    return new int[]{x, y};
+                }
+            }
+        }
+        return new int[]{-1,-1};
+    }
+
     // 체크 여부 반환
-    private boolean getIsCheck() {
+    /*
+        반환 값 = (0: 체크 아님, 1: 화이트 팀 체크, 2: 블랙 팀 체크)
+    */
+    private boolean getIsCheck(int teamId) {
+        int[] targetKingPosition = this.getKingPosition(teamId == WHITE_ID ? BLACK_ID : WHITE_ID);
+        int targetKingX = targetKingPosition[0];
+        int targetKingY = targetKingPosition[1];
+        for (int y = 0; y < HEIGHT; y++) {
+            for (int x = 0; x < WIDTH; x++) {
+                Piece piece = this.board.getPiece(x, y);
+                if ((x == targetKingX && y == targetKingY) || (piece.getTeamId() != teamId)) {
+                    continue;
+                }
+                boolean canMove = piece.getCanMove(this.board, x, y, targetKingX, targetKingY, 2);
+                if (canMove) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -52,8 +82,8 @@ public class Game {
     }
 
     // 착수 이벤트 제어
-    private void handlePut(int x, int y) {
-        boolean isCheck = this.getIsCheck();
+    private void handlePut(int x, int y, int teamId) {
+        boolean isCheck = this.getIsCheck(teamId);
         if (isCheck) {
             this.handleCheck();
         } else {
@@ -82,7 +112,7 @@ public class Game {
             if (canMove) {
                 board.movePiece(nowX, nowY, moveX, moveY);
                 count += 1;
-                this.handlePut(moveX, moveY);
+                this.handlePut(moveX, moveY, piece.getTeamId());
                 this.renderBoard();
                 return true;
             }
