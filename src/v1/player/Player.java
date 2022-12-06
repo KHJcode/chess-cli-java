@@ -1,8 +1,6 @@
 package v1.player;
 
-import v1.Board;
 import v1.Game;
-import v1.piece.Piece;
 
 public abstract class Player {
     private final String nickname;
@@ -15,16 +13,6 @@ public abstract class Player {
     // 플레이어의 닉네임을 반환
     public String getNickname() {
         return this.nickname;
-    }
-
-    public boolean checkPromotionByTeam(Board board, int x, int minId, int maxId) {
-        for (Piece piece : board.getDeployment()[x]) {
-            int pieceId = piece.getId();
-            if (minId <= pieceId && pieceId <= maxId) {
-                return true;
-            }
-        }
-        return false;
     }
 
     // 플레이어가 게임에 입장했을 때 제어

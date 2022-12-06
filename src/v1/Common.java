@@ -14,4 +14,8 @@ public class Common {
     public static int HEIGHT = 7;
 
     public static ArrayList<PieceTeam> pieceTeams = new ArrayList<>(Arrays.asList(new Black(), new White()));
+
+    public static int getOtherTeamId(int teamId) {
+        return teamId == BLACK_ID ? WHITE_ID : BLACK_ID;
+    }
 }

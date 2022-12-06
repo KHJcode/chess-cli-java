@@ -7,9 +7,18 @@ import static v1.Common.pieceTeams;
 
 public class Pawn extends Piece {
     private boolean isFirst = true;
+    private boolean isAngphasang = false;
 
     public Pawn(int teamId) {
         super(teamId, PieceId.PAWN.get(), pieceTeams.get(teamId).getPawn());
+    }
+
+    public boolean getIsAngphasang() {
+        return this.isAngphasang;
+    }
+
+    public void setIsFirst(boolean isFirst) {
+        this.isFirst = isFirst;
     }
 
     private int jul(int n) {
@@ -19,30 +28,43 @@ public class Pawn extends Piece {
     @Override
     public boolean getCanMove(Board board, int nowX, int nowY, int moveX, int moveY, int targetStatus) {
         if (Common.BLACK_ID == this.getTeamId()) {
-            if (this.isFirst) {
-                isFirst = false;
-                if (board.getPiece(nowX, nowY + 1) != null)
+            if (isFirst) {
+                if (moveY - nowY == 2 && moveX == nowX) return true;
+                this.isAngphasang = true;
+            } else
+                this.isAngphasang = false;
+            if (moveY - nowY == 2 && moveX == nowX) return false;
+            if (jul(moveX - nowX) == 1 && moveY - nowY == 1) {
+                if (targetStatus == 2)
+                    return true;
+                else {
+                    Piece piece = board.getPiece(moveX, nowY);
+
+                    if (piece.getTeamId() == PieceId.PAWN.get()) {
+                        return this.getIsAngphasang();
+                    }
                     return false;
-                return (0 < jul(moveY - nowY) && jul(moveY - nowY) <= 2) && moveX == nowX;
-            } else {
-                if (targetStatus == 2) {
-                    return jul(moveX - nowX) == 1 && jul(moveY - nowY) == 1;
-                } else
-                    return jul(moveY - nowY) == 1 && moveX == nowX;
+                }
             }
         } else {
-            if (this.isFirst) {
-                this.isFirst = false;
-                if (board.getPiece(nowX, nowY - 1) != null)
+            if (isFirst) {
+                if (nowY - moveY == 2 && moveX == nowX) return true;
+                this.isAngphasang = true;
+            } else
+                this.isAngphasang = false;
+            if (nowY - moveY == 2 && moveX == nowX) return false;
+            if (jul(moveX - nowX) == 1 && nowY - moveY == 1) {
+                if (targetStatus == 2)
+                    return true;
+                else {
+                    Piece piece = board.getPiece(moveX, nowY);
+                    if (piece.getTeamId() == PieceId.PAWN.get()) {
+                        return this.getIsAngphasang();
+                    }
                     return false;
-                return (0 < jul(moveY - nowY) && jul(moveY - nowY) <= 2) && moveX == nowX;
-            } else {
-
-                if (targetStatus == 2) {
-                    return jul(moveX - nowX) == 1 && jul(moveY - nowY) == 1;
-                } else
-                    return jul(moveY - nowY) == 1 && moveX == nowX;
+                }
             }
         }
+        return false;
     }
 }
