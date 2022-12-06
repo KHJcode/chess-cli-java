@@ -5,9 +5,8 @@ import v1.Board;
 import static v1.Common.pieceTeams;
 
 public class King extends Piece {
-    public King(int id, int teamId) {
-        super(id, teamId);
-        super.mark = pieceTeams.get(teamId).getKing();
+    public King(int teamId) {
+        super(teamId, PieceId.KING.get(), pieceTeams.get(teamId).getKing());
     }
 
     public int jul(int n) {

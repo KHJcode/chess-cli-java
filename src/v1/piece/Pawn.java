@@ -8,9 +8,8 @@ import static v1.Common.pieceTeams;
 public class Pawn extends Piece {
     private boolean isFirst = true;
 
-    public Pawn(int id, int teamId) {
-        super(id, teamId);
-        super.mark = pieceTeams.get(teamId).getPawn();
+    public Pawn(int teamId) {
+        super(teamId, PieceId.PAWN.get(), pieceTeams.get(teamId).getPawn());
     }
 
     private int jul(int n) {

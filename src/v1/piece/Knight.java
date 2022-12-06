@@ -5,9 +5,8 @@ import v1.Board;
 import static v1.Common.pieceTeams;
 
 public class Knight extends Piece {
-    public Knight(int id, int teamId) {
-        super(id, teamId);
-        super.mark = pieceTeams.get(teamId).getKnight();
+    public Knight(int teamId) {
+        super(teamId, PieceId.KNIGHT.get(), pieceTeams.get(teamId).getKnight());
     }
 
     public int jul(int n) {

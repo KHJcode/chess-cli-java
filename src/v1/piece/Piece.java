@@ -7,9 +7,10 @@ abstract public class Piece {
     private final int teamId;
     protected char mark;
 
-    Piece(int id, int teamId) {
-        this.id = id;
+    Piece(int teamId, int id, char mark) {
         this.teamId = teamId;
+        this.id = id;
+        this.mark = mark;
     }
 
     public int getTeamId() {

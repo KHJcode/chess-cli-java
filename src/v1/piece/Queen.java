@@ -6,9 +6,8 @@ import static v1.Common.pieceTeams;
 
 public class Queen extends Piece {
 
-    public Queen(int id, int teamId) {
-        super(id, teamId);
-        super.mark = pieceTeams.get(teamId).getQueen();
+    public Queen(int teamId) {
+        super(teamId, PieceId.QUEEN.get(), pieceTeams.get(teamId).getQueen());
     }
 
     public int jul(int n) {

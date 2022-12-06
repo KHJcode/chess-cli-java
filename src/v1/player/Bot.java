@@ -15,5 +15,6 @@ public class Bot extends Player {
     }
 
     @Override
-    public void handleTurn() {}
+    public void handleTurn() {
+    }
 }

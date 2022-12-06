@@ -17,7 +17,7 @@ public class GameController {
         this.game = new Game();
         this.player1.handleJoin(this.game);
         this.player2.handleJoin(this.game);
-        while (!this.game.isEnd()) {
+        while (!this.game.getIsCheckmate()) {
             this.player1.handleTurn();
             this.player2.handleTurn();
         }

@@ -14,42 +14,41 @@ public class Board {
 
     private void initialize() {
         this.deployment = new Piece[8][8];
-        int id = 0;
-        setPiece(0, 0, new Rook(++id, BLACK_ID));
-        setPiece(1, 0, new Knight(++id, BLACK_ID));
-        setPiece(2, 0, new Bishop(++id, BLACK_ID));
-        setPiece(3, 0, new King(++id, BLACK_ID));
-        setPiece(4, 0, new Queen(++id, BLACK_ID));
-        setPiece(5, 0, new Bishop(++id, BLACK_ID));
-        setPiece(6, 0, new Knight(++id, BLACK_ID));
-        setPiece(7, 0, new Rook(++id, BLACK_ID));
-        setPiece(0, 1, new Pawn(++id, BLACK_ID));
-        setPiece(1, 1, new Pawn(++id, BLACK_ID));
-        setPiece(2, 1, new Pawn(++id, BLACK_ID));
-        setPiece(3, 1, new Pawn(++id, BLACK_ID));
-        setPiece(4, 1, new Pawn(++id, BLACK_ID));
-        setPiece(5, 1, new Pawn(++id, BLACK_ID));
-        setPiece(6, 1, new Pawn(++id, BLACK_ID));
-        setPiece(7, 1, new Pawn(++id, BLACK_ID));
-        setPiece(0, 6, new Pawn(++id, WHITE_ID));
-        setPiece(1, 6, new Pawn(++id, WHITE_ID));
-        setPiece(2, 6, new Pawn(++id, WHITE_ID));
-        setPiece(3, 6, new Pawn(++id, WHITE_ID));
-        setPiece(4, 6, new Pawn(++id, WHITE_ID));
-        setPiece(5, 6, new Pawn(++id, WHITE_ID));
-        setPiece(6, 6, new Pawn(++id, WHITE_ID));
-        setPiece(7, 6, new Pawn(++id, WHITE_ID));
-        setPiece(0, 7, new Rook(++id, WHITE_ID));
-        setPiece(1, 7, new Knight(++id, WHITE_ID));
-        setPiece(2, 7, new Bishop(++id, WHITE_ID));
-        setPiece(3, 7, new King(++id, WHITE_ID));
-        setPiece(4, 7, new Queen(++id, WHITE_ID));
-        setPiece(5, 7, new Bishop(++id, WHITE_ID));
-        setPiece(6, 7, new Knight(++id, WHITE_ID));
-        setPiece(7, 7, new Rook(++id, WHITE_ID));
+        setPiece(0, 0, new Rook(BLACK_ID));
+        setPiece(1, 0, new Knight(BLACK_ID));
+        setPiece(2, 0, new Bishop(BLACK_ID));
+        setPiece(3, 0, new King(BLACK_ID));
+        setPiece(4, 0, new Queen(BLACK_ID));
+        setPiece(5, 0, new Bishop(BLACK_ID));
+        setPiece(6, 0, new Knight(BLACK_ID));
+        setPiece(7, 0, new Rook(BLACK_ID));
+        setPiece(0, 1, new Pawn(BLACK_ID));
+        setPiece(1, 1, new Pawn(BLACK_ID));
+        setPiece(2, 1, new Pawn(BLACK_ID));
+        setPiece(3, 1, new Pawn(BLACK_ID));
+        setPiece(4, 1, new Pawn(BLACK_ID));
+        setPiece(5, 1, new Pawn(BLACK_ID));
+        setPiece(6, 1, new Pawn(BLACK_ID));
+        setPiece(7, 1, new Pawn(BLACK_ID));
+        setPiece(0, 6, new Pawn(WHITE_ID));
+        setPiece(1, 6, new Pawn(WHITE_ID));
+        setPiece(2, 6, new Pawn(WHITE_ID));
+        setPiece(3, 6, new Pawn(WHITE_ID));
+        setPiece(4, 6, new Pawn(WHITE_ID));
+        setPiece(5, 6, new Pawn(WHITE_ID));
+        setPiece(6, 6, new Pawn(WHITE_ID));
+        setPiece(7, 6, new Pawn(WHITE_ID));
+        setPiece(0, 7, new Rook(WHITE_ID));
+        setPiece(1, 7, new Knight(WHITE_ID));
+        setPiece(2, 7, new Bishop(WHITE_ID));
+        setPiece(3, 7, new King(WHITE_ID));
+        setPiece(4, 7, new Queen(WHITE_ID));
+        setPiece(5, 7, new Bishop(WHITE_ID));
+        setPiece(6, 7, new Knight(WHITE_ID));
+        setPiece(7, 7, new Rook(WHITE_ID));
     }
 
-    private void setPiece(int x, int y, Piece piece) {
+    public void setPiece(int x, int y, Piece piece) {
         this.deployment[y][x] = piece;
     }
 

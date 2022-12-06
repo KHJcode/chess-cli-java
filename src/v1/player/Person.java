@@ -42,18 +42,18 @@ public class Person extends Player {
             int currentY = this.inputNumberWithinRange("선택", 'Y', 1, 8);
             Piece selectedPiece = this.game.getBoard().getPiece(currentX - 1, currentY - 1);
             if (selectedPiece == null) {
-                this.game.handleUpdateBoard();
+                this.game.renderBoard();
                 System.out.println("시스템: 선택하신 칸은 현재 비어있습니다! " + "(" + currentX + "," + currentY + ")");
             }
             else if (selectedPiece.getTeamId() != WHITE_ID) {
-                this.game.handleUpdateBoard();
+                this.game.renderBoard();
                 System.out.println("시스템: 선택하신 칸의 말은 다른 팀입니다! " + "(" + currentX + "," + currentY + ")");
             } else {
                 int targetX = this.inputNumberWithinRange("이동", 'X', 1, 8);
                 int targetY = this.inputNumberWithinRange("이동", 'Y', 1, 8);
                 result = this.game.put(currentX - 1, currentY - 1, targetX - 1, targetY - 1);
                 if (!result) {
-                    this.game.handleUpdateBoard();
+                    this.game.renderBoard();
                     System.out.println("시스템: 규칙에 따라 착수할 수 없습니다! " + "(" + targetX + "," + targetY + ")");
                 }
             }

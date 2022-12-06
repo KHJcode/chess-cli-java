@@ -5,9 +5,8 @@ import v1.Board;
 import static v1.Common.pieceTeams;
 
 public class Bishop extends Piece {
-    public Bishop(int id, int teamId) {
-        super(id, teamId);
-        super.mark = pieceTeams.get(teamId).getBishop();
+    public Bishop(int teamId) {
+        super(teamId, PieceId.BISHOP.get(), pieceTeams.get(teamId).getBishop());
     }
 
     @Override
