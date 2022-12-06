@@ -35,6 +35,9 @@ public class Game {
         for (int y = 0; y <= HEIGHT; y++) {
             for (int x = 0; x <= WIDTH; x++) {
                 Piece piece = this.board.getPiece(x, y);
+                if (piece == null) {
+                    continue;
+                }
                 if (piece.getTeamId() == teamId && piece.getId() == PieceId.KING.get()) {
                     return new int[]{x, y};
                 }
@@ -51,7 +54,9 @@ public class Game {
         for (int y = 0; y < HEIGHT; y++) {
             for (int x = 0; x < WIDTH; x++) {
                 Piece piece = this.board.getPiece(x, y);
-                if ((x == targetKingX && y == targetKingY) || (piece.getTeamId() != teamId)) {
+                if ((x == targetKingX && y == targetKingY) || piece == null) {
+                    continue;
+                } else if (piece.getTeamId() != teamId) {
                     continue;
                 }
                 boolean canMove = piece.getCanMove(this.board, x, y, targetKingX, targetKingY, 2);

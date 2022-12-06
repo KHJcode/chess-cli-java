@@ -16,7 +16,7 @@ public abstract class Player {
     }
 
     // 플레이어가 게임에 입장했을 때 제어
-    abstract public void handleJoin(Game game);
+    abstract public void handleJoin(Game game, int teamId);
 
     // 플레이어의 차례가 왔을 때 제어
     abstract public void handleTurn();

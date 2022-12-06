@@ -9,6 +9,7 @@ import static v1.Common.WHITE_ID;
 
 public class Person extends Player {
     private Game game;
+    private int teamId;
 
     public Person(String nickname) {
         super(nickname);
@@ -30,8 +31,9 @@ public class Person extends Player {
     }
 
     @Override
-    public void handleJoin(Game game) {
+    public void handleJoin(Game game, int teamId) {
         this.game = game;
+        this.teamId = teamId;
     }
 
     @Override
@@ -45,7 +47,7 @@ public class Person extends Player {
                 this.game.renderBoard();
                 System.out.println("시스템: 선택하신 칸은 현재 비어있습니다! " + "(" + currentX + "," + currentY + ")");
             }
-            else if (selectedPiece.getTeamId() != WHITE_ID) {
+            else if (selectedPiece.getTeamId() == teamId) {
                 this.game.renderBoard();
                 System.out.println("시스템: 선택하신 칸의 말은 다른 팀입니다! " + "(" + currentX + "," + currentY + ")");
             } else {
