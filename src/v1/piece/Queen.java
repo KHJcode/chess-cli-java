@@ -10,10 +10,6 @@ public class Queen extends Piece {
         super(teamId, PieceId.QUEEN.get(), pieceTeams.get(teamId).getQueen());
     }
 
-    public int jul(int n) {
-        return n < 0 ? n * -1 : n;
-    }
-
     @Override
     public boolean getCanMove(Board board, int nowX, int nowY, int moveX, int moveY, int targetStatus) {
         if (targetStatus == 1) {

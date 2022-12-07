@@ -18,4 +18,8 @@ public class Common {
     public static int getOtherTeamId(int teamId) {
         return teamId == BLACK_ID ? WHITE_ID : BLACK_ID;
     }
+
+    public static int jul(int n) {
+        return n < 0 ? n * -1 : n;
+    }
 }

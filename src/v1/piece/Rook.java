@@ -2,15 +2,12 @@ package v1.piece;
 
 import v1.Board;
 
+import static v1.Common.jul;
 import static v1.Common.pieceTeams;
 
 public class Rook extends Piece {
     public Rook(int teamId) {
         super(teamId, PieceId.ROOK.get(), pieceTeams.get(teamId).getRook());
-    }
-
-    public int jul(int n) {
-        return n < 0 ? n * -1 : n;
     }
 
     @Override

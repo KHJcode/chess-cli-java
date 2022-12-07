@@ -2,7 +2,6 @@ package v1;
 
 import v1.player.Player;
 import v1.player.Person;
-import v1.player.Bot;
 
 import static v1.Common.BLACK_ID;
 import static v1.Common.WHITE_ID;

@@ -3,6 +3,7 @@ package v1.piece;
 import v1.Common;
 import v1.Board;
 
+import static v1.Common.jul;
 import static v1.Common.pieceTeams;
 
 public class Pawn extends Piece {
@@ -19,10 +20,6 @@ public class Pawn extends Piece {
 
     public void setIsFirst(boolean isFirst) {
         this.isFirst = isFirst;
-    }
-
-    private int jul(int n) {
-        return n < 0 ? n * -1 : n;
     }
 
     private void setNull(Board board, int x, int y) {
