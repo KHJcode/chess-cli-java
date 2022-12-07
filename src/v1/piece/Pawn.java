@@ -35,7 +35,6 @@ public class Pawn extends Piece {
             if (isFirst) {//7 4  6 5
                 if (moveY - nowY == 2 && moveX == nowX) return true;
                 this.isAngphasang = 2;
-                isFirst = false;
             } else
                 this.isAngphasang = this.isAngphasang - 1;
             if (moveY - nowY == 2 && moveX == nowX) return false;
@@ -69,7 +68,6 @@ public class Pawn extends Piece {
                 else {
                     Piece piece = board.getPiece(moveX, nowY);
                     if (piece.getTeamId() != PieceId.PAWN.get()) {
-
                         this.setNull(board, moveX, nowY);
                         return true;
                     }

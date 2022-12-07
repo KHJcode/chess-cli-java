@@ -50,6 +50,9 @@ public class Game {
         int[] targetKingPosition = this.getKingPosition(getOtherTeamId(teamId));
         int targetKingX = targetKingPosition[0];
         int targetKingY = targetKingPosition[1];
+        if (targetKingX == -1 && targetKingY == -1) {
+            return true;
+        }
         for (int y = 0; y <= HEIGHT; y++) {
             for (int x = 0; x <= WIDTH; x++) {
                 Piece piece = this.board.getPiece(x, y);
@@ -92,7 +95,6 @@ public class Game {
                 this.handlePromotion(x, y, piece.getTeamId());
             }
         }
-        /*
         boolean isCheck = this.getIsCheck(teamId);
         if (isCheck) {
             if (teamId == this.checkTeamId) {
@@ -108,7 +110,6 @@ public class Game {
         if (isCheckmate) {
             this.winnerTeamId = getOtherTeamId(teamId);
         }
-        */
     }
 
     // 보드 렌더링
