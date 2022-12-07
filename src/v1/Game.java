@@ -8,11 +8,10 @@ import v1.piece.Queen;
 import static v1.Common.*;
 
 public class Game {
-    private int count = 0;
     private final Board board;
     private final Renderer renderer;
-    private int checkTeamId = 0;
-    private int winnerTeamId = 0;
+    private int checkTeamId = -1;
+    private int winnerTeamId = -1;
 
     Game() {
         this.board = new Board();
@@ -27,7 +26,7 @@ public class Game {
 
     // 체크메이트 팀 반환
     public int getIsCheckmate() {
-        return this.winnerTeamId;
+        return this.winnerTeamId + 1;
     }
 
     // 왕 위치 반환
@@ -51,8 +50,8 @@ public class Game {
         int[] targetKingPosition = this.getKingPosition(getOtherTeamId(teamId));
         int targetKingX = targetKingPosition[0];
         int targetKingY = targetKingPosition[1];
-        for (int y = 0; y < HEIGHT; y++) {
-            for (int x = 0; x < WIDTH; x++) {
+        for (int y = 0; y <= HEIGHT; y++) {
+            for (int x = 0; x <= WIDTH; x++) {
                 Piece piece = this.board.getPiece(x, y);
                 if ((x == targetKingX && y == targetKingY) || piece == null) {
                     continue;
@@ -93,6 +92,7 @@ public class Game {
                 this.handlePromotion(x, y, piece.getTeamId());
             }
         }
+        /*
         boolean isCheck = this.getIsCheck(teamId);
         if (isCheck) {
             if (teamId == this.checkTeamId) {
@@ -102,12 +102,13 @@ public class Game {
                 this.handleCheck(teamId);
             }
         } else {
-            this.checkTeamId = 0;
+            this.checkTeamId = -1;
         }
         boolean isCheckmate = this.getIsCheck(getOtherTeamId(teamId));
         if (isCheckmate) {
             this.winnerTeamId = getOtherTeamId(teamId);
         }
+        */
     }
 
     // 보드 렌더링
@@ -124,7 +125,6 @@ public class Game {
             boolean canMove = piece.getCanMove(this.board, nowX, nowY, moveX, moveY, targetStatus);
             if (canMove) {
                 board.movePiece(nowX, nowY, moveX, moveY);
-                count += 1;
                 this.handlePut(moveX, moveY, piece.getTeamId());
                 this.renderBoard();
                 return true;

@@ -47,7 +47,7 @@ public class Person extends Player {
                 this.game.renderBoard();
                 System.out.println("시스템: 선택하신 칸은 현재 비어있습니다! " + "(" + currentX + "," + currentY + ")");
             }
-            else if (selectedPiece.getTeamId() == teamId) {
+            else if (selectedPiece.getTeamId() != teamId) {
                 this.game.renderBoard();
                 System.out.println("시스템: 선택하신 칸의 말은 다른 팀입니다! " + "(" + currentX + "," + currentY + ")");
             } else {

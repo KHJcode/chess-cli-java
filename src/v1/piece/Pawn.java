@@ -7,13 +7,13 @@ import static v1.Common.pieceTeams;
 
 public class Pawn extends Piece {
     private boolean isFirst = true;
-    private boolean isAngphasang = false;
+    private int isAngphasang = 0;
 
     public Pawn(int teamId) {
         super(teamId, PieceId.PAWN.get(), pieceTeams.get(teamId).getPawn());
     }
 
-    public boolean getIsAngphasang() {
+    public int getIsAngphasang() {
         return this.isAngphasang;
     }
 
@@ -25,23 +25,32 @@ public class Pawn extends Piece {
         return n < 0 ? n * -1 : n;
     }
 
+    private void setNull(Board board, int x, int y) {
+        board.setPiece(x, y, null);
+    }
+
     @Override
     public boolean getCanMove(Board board, int nowX, int nowY, int moveX, int moveY, int targetStatus) {
         if (Common.BLACK_ID == this.getTeamId()) {
-            if (isFirst) {
+            if (isFirst) {//7 4  6 5
                 if (moveY - nowY == 2 && moveX == nowX) return true;
-                this.isAngphasang = true;
+                this.isAngphasang = 2;
+                isFirst = false;
             } else
-                this.isAngphasang = false;
+                this.isAngphasang = this.isAngphasang - 1;
             if (moveY - nowY == 2 && moveX == nowX) return false;
+            if (moveY - nowY == 1 && moveX == nowX) return true;
             if (jul(moveX - nowX) == 1 && moveY - nowY == 1) {
                 if (targetStatus == 2)
                     return true;
                 else {
                     Piece piece = board.getPiece(moveX, nowY);
 
-                    if (piece.getTeamId() == PieceId.PAWN.get()) {
-                        return this.getIsAngphasang();
+                    if (piece.getTeamId() != PieceId.PAWN.get()) {
+
+                        this.setNull(board, moveX, nowY);
+                        return true;
+
                     }
                     return false;
                 }
@@ -49,17 +58,20 @@ public class Pawn extends Piece {
         } else {
             if (isFirst) {
                 if (nowY - moveY == 2 && moveX == nowX) return true;
-                this.isAngphasang = true;
+                this.isAngphasang = 2;
             } else
-                this.isAngphasang = false;
+                this.isAngphasang--;
             if (nowY - moveY == 2 && moveX == nowX) return false;
+            if (nowY - moveY == 1 && moveX == nowX) return true;
             if (jul(moveX - nowX) == 1 && nowY - moveY == 1) {
                 if (targetStatus == 2)
                     return true;
                 else {
                     Piece piece = board.getPiece(moveX, nowY);
-                    if (piece.getTeamId() == PieceId.PAWN.get()) {
-                        return this.getIsAngphasang();
+                    if (piece.getTeamId() != PieceId.PAWN.get()) {
+
+                        this.setNull(board, moveX, nowY);
+                        return true;
                     }
                     return false;
                 }

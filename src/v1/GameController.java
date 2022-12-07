@@ -33,6 +33,6 @@ public class GameController {
                 break;
             }
         }
-        System.out.println("승리");
+        System.out.println("승리: " + (this.game.getIsCheckmate() == 1 ? "블랙" : "화이트"));
     }
 }
