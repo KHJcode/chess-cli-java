@@ -16,6 +16,7 @@ public class GameController {
         this.player2 = new Person("Bixby");
     }
 
+    // 게임 시작
     public void start() {
         this.game = new Game();
         this.player1.handleJoin(this.game, WHITE_ID);
@@ -32,6 +33,6 @@ public class GameController {
                 break;
             }
         }
-        System.out.println("승리: " + (this.game.getIsCheckmate() == 1 ? "블랙" : "화이트"));
+        System.out.println("시스템: 체크메이트, " + (this.game.getIsCheckmate() == 1 ? "블랙" : "화이트") + " 팀 승리!");
     }
 }
